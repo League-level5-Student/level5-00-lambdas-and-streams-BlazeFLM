@@ -63,7 +63,7 @@ public class Minesweeper extends PApplet {
      * *Note* This can be done using a for loop, but try to do it with Streams.
      */
     void revealAllCells() {
-        
+        //cells.stream().forEach(cells)HERHEREHHEHRER
     }
     
     /*
