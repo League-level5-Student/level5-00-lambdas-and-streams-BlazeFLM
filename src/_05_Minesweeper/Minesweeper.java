@@ -78,7 +78,9 @@ public class Minesweeper extends PApplet {
      */
     boolean checkWin() {
     	Stream<Cell> h = cells.stream().filter(cell -> cell.mine == false && cell.revealed == true);
-    	
+    	if (h.count() == cells.stream().filter(cell -> cell.mine == false).count()) {
+    		return true;
+    	}
     	
         return false;
     }
@@ -100,7 +102,18 @@ public class Minesweeper extends PApplet {
      *        - - - -
      */
     void revealCell(Cell cell) {
-        
+        if(!cell.mine) {
+        	cell.revealed = true;
+        	if(cell.minesAround == 0) {
+        		List<Cell> neighbors = getNeighbors(cell);
+        		neighbors.stream().forEach(neighbor -> {
+        			if(!neighbor.revealed && !neighbor.mine) {
+        				revealCell(neighbor);
+        			}
+        		});
+        		
+        	}
+        }
     }
     
     /*
@@ -115,7 +128,8 @@ public class Minesweeper extends PApplet {
      * 6. Use reduce() or sum() to count the number of 1s, i.e. mines
      */
     void setNumberOfSurroundingMines() {
-        
+    	cells.stream().forEach(cell -> getNeighbors(cell).stream());
+    	
     }
     
     @Override
