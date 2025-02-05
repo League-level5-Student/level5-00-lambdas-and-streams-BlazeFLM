@@ -1,4 +1,4 @@
-package _01_Lambda_Methods;
+ package _01_Lambda_Methods;
 
 public class LambdaMethods {
 	public static void main(String[] args) {
